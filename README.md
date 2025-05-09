@@ -1,6 +1,6 @@
 # 🚀 MCP-Launchpad: Your AI-Agent Server Hub
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Docker](https://img.shields.io/badge/Docker-First-blue.svg)](https://www.docker.com/) [![AI-Friendly](https://img.shields.io/badge/AI--Friendly-Ready-brightgreen.svg)](https://asingularixy.ai)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)]() [![Docker](https://img.shields.io/badge/Docker-First-blue.svg)]() [![AI-Friendly](https://img.shields.io/badge/AI--Friendly-Ready-brightgreen.svg)]()
 
 **MCP-Launchpad** is your one-stop hub for easily deployable MCP servers! 🐳 Designed with AI-agents in mind, our curated, open-source repository offers Dockerized, multi-platform servers ready to launch in minutes. Empower your AI with powerful tools and seamless integration. ✨
 
@@ -61,7 +61,7 @@ Browse our growing collection of MCP servers, grouped by category. Each server i
 *Coming soon...*
 
 ### 🗄️ Databases & Storage
-*Coming soon...*
+- [🧠 **Memory Storage MCP**](mcp_servers/memory_storage_mcp/) - A lightweight, persistent storage solution for AI-agent memory and context management. 🐍 🐧 🪟 🍎 🤖
 
 ### 📡 APIs & Communication
 *Coming soon...*
@@ -77,7 +77,7 @@ Browse our growing collection of MCP servers, grouped by category. Each server i
 
 MCP-Launchpad is more than a repository; it's a stepping stone toward technological singularity and a new world order powered by the synthesis of human and AI ingenuity. Built under the vision of **ASINGULARIXY**, we aim to accelerate the future through projects like AGIENT Core and AI-Launchpool.
 
-- **Follow Us:** [ASINGULARIXY Website](https://asingularixy.ai) | [GitHub](https://github.com/LNDMN)
+- **Follow Us:** [GitHub](https://github.com/LNDMN)
 - **Get Involved:** Star this repo ⭐, fork it, or submit a pull request to be part of the movement.
 
 Together, let's build the future. 🚀

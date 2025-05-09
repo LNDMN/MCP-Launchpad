@@ -1,0 +1,51 @@
+# Memory Storage MCP - Default Configuration
+# This configuration file can be customized and mounted to override defaults
+
+# Server settings
+server:
+  port: 8000
+  host: "0.0.0.0"
+  workers: 1
+  log_level: "INFO"
+
+# Storage settings
+storage:
+  data_dir: "/data"
+  backup:
+    enabled: true
+    interval_minutes: 60
+    max_backups: 5
+    backup_dir: "/data/backups"
+
+# Security settings
+security:
+  auth_enabled: false
+  auth_key: ""  # Set this in production!
+  cors_origins: ["*"]
+  
+# Memory structure settings
+memory_structure:
+  default_projects:
+    - name: "GLOBAL"
+      description: "Global shared memory accessible to all agents"
+    - name: "EVE_MEMORY"
+      description: "EVE's personal memory storage"
+    - name: "SYSTEM"
+      description: "System configuration and operational data"
+  
+  memory_types:
+    - "SHORT_TERM"
+    - "LONG_TERM"
+    - "PROJECT"
+    - "GLOBAL"
+
+# A2A compatibility
+a2a:
+  enabled: true
+  endpoint: "/a2a"
+  actions:
+    - "list_projects"
+    - "list_project_files"
+    - "memory_bank_read"
+    - "memory_bank_write"
+    - "memory_bank_update" 

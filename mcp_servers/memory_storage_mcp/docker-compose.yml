@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  memory-storage-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: memory-storage-mcp:latest
+    container_name: memory-storage-mcp
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - memory_data:/data
+      - ./config:/app/config
+    environment:
+      - MEMORY_STORAGE_PORT=8000
+      - MEMORY_STORAGE_DATA_DIR=/data
+      - MEMORY_STORAGE_LOG_LEVEL=INFO
+      - MEMORY_STORAGE_BACKUP_INTERVAL=60
+      - MEMORY_STORAGE_AUTH_ENABLED=false
+      # Uncomment and set for production use
+      # - MEMORY_STORAGE_AUTH_KEY=your_secret_key
+
+volumes:
+  memory_data:
+    driver: local 
