@@ -1,0 +1,40 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test and coverage
+.coverage
+.pytest_cache/
+coverage.xml
+coverage_html/
+
+# Project specific
+data/
+backups/
+*.log
+config.local.yaml
+
+# Environment variables
+.env
+.env.local
+
+# Temp files
+*.tmp
+tmp/ 

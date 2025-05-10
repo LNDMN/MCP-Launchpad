@@ -42,34 +42,19 @@ Check our [Contribution Guidelines](CONTRIBUTING.md) for detailed instructions o
 
 ---
 
-## 🔑 Icon Legend
-
-To help you quickly identify the characteristics of each MCP server, we use the following icons:
-
-- **💻 OS:** Operating system compatibility (e.g., 🐧 Linux, 🪟 Windows, 🍎 macOS)
-- **🗣️ Language:** Primary programming language (e.g., 🐍 Python, ☕ Java, 🟨 JavaScript)
-- **⚙️ Type:** Server type or category (e.g., 📡 API, 🗄️ Database, 🔍 Search)
-- **🤖 A2A:** Indicates if the server supports Agent-to-Agent communication mode.
-
----
-
 ## 📚 MCP Server Catalog
 
-Browse our growing collection of MCP servers, grouped by category. Each server is ready to deploy and integrate with your AI-agent.
+While excellent curated lists like `awesome-mcp-servers` (and notably its 'Aggregators' section) provide a vast landscape of available MCP servers, MCP-Launchpad aims to be more than just a collection of links. Our goal is to offer a catalog of carefully selected, adapted, and enhanced MCP servers. Each server listed here is either already integrated or is on our roadmap for integration, featuring standardized documentation, Dockerization, testing, and A2A-compatibility where applicable, to ensure seamless use within advanced AI agent ecosystems. We respect the original work and will always indicate the source and license for any server adapted from other repositories.
 
-### 🔍 Search & Indexing
-*Coming soon...*
+| Server & Link                                                  | Description                                                                                                | Category                | Type (🏠/☁️/🔄)                 | A2A      | Docker         | Docs            | Tests            | Progress                     | Updated      | Source & License                                                |
+| :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :---------------------- | :----------------------------- | :------- | :------------- | :---------------- | :--------------- | :--------------------------- | :----------- | :-------------------------------------------------------------- |
+| [🧠 **Memory Storage MCP**](mcp_servers/memory_storage_mcp/)     | A lightweight, persistent storage solution for AI-agent memory and context management. 🐍 🐧 🪟 🍎 🤖        | 🗄️ Databases & Storage | 🏠                             | ✅       | ✅             | ✅                | ✅               | 100% (Deployed)              | 2024-07-16   | Original (MIT License)                                          |
+| [MindsDB](https://github.com/mindsdb/mindsdb)                  | Connect and unify data across various platforms and databases with MindsDB as a single MCP server.         | 🔗 Aggregators          | 🔄                             | 🟡       | 🟡             | 🟡                | 🟡               | 0% (Pending Review)          | 2024-07-16   | [Source](https://github.com/mindsdb/mindsdb) (GPL-3.0 license)    |
+| [Pipedream](https://github.com/PipedreamHQ/pipedream)          | Connect with 2,500 APIs with 8,000+ prebuilt tools, and manage servers for your users, in your own app.   | 🔗 Aggregators          | ☁️                             | 🟡       | 🟡             | 🟡                | 🟡               | 0% (Pending Review)          | 2024-07-16   | [Source](https://github.com/PipedreamHQ/pipedream) (Apache-2.0 license) |
+| [WayStation AI MCP](https://github.com/waystation-ai/mcp)      | Seamlessly and securely connect Claude Desktop and other MCP hosts to your favorite apps.                  | 🔗 Aggregators          | ☁️                             | 🟡       | 🟡             | 🟡                | 🟡               | 0% (Pending Review)          | 2024-07-16   | [Source](https://github.com/waystation-ai/mcp) (MIT License)     |
+| *More servers to be added...*                                  |                                                                                                            |                         |                                |          |                |                   |                  |                              |              |                                                                 |
 
-### 🗄️ Databases & Storage
-- [🧠 **Memory Storage MCP**](mcp_servers/memory_storage_mcp/) - A lightweight, persistent storage solution for AI-agent memory and context management. 🐍 🐧 🪟 🍎 🤖
-
-### 📡 APIs & Communication
-*Coming soon...*
-
-### 🛠️ Utilities & Tools
-*Coming soon...*
-
-> **Note:** We're actively expanding our catalog. Check back often or contribute to add your favorite MCP server!
+> **Note:** We're actively expanding our catalog by adapting and integrating new servers. Check back often or contribute to add your favorite MCP server, fully adapted to our standards!
 
 ---
 

@@ -12,6 +12,7 @@ We are thrilled to have you join our mission to build the ultimate hub for AI-ag
   - [Adding New MCP Servers](#adding-new-mcp-servers)
   - [Improving Documentation](#improving-documentation)
 - [Guidelines for Adding New MCP Servers](#guidelines-for-adding-new-mcp-servers)
+  - [Sourcing MCP Servers](#sourcing-mcp-servers)
   - [Server Criteria](#server-criteria)
   - [Directory Structure](#directory-structure)
   - [Dockerfile Requirements](#dockerfile-requirements)
@@ -43,6 +44,12 @@ This is one of the most valuable ways to contribute! We aim to build a comprehen
 Clear and concise documentation is crucial for AI agents and developers. If you see areas for improvement in any `README.md`, `AGENT_DOCS.md`, or the main project documentation, please feel free to submit a pull request.
 
 ## Guidelines for Adding New MCP Servers
+
+**Sourcing MCP Servers:**
+When looking for new MCP servers to adapt and contribute to MCP-Launchpad, we encourage exploring comprehensive public catalogs such as `awesome-mcp-servers` (GitHub: `punkpeye/awesome-mcp-servers`), particularly its 'Aggregators' section which often lists versatile tools. If you decide to adapt a server from such a list, please ensure:
+    *   You thoroughly review and comply with its original license terms. Our project is MIT licensed, and contributions should ideally be compatible.
+    *   You are prepared to fully adapt it to MCP-Launchpad standards, which includes creating a robust `Dockerfile`, detailed AI-friendly `README.md` or `AGENT_DOCS.md` within its own subdirectory (e.g., `mcp_servers/your_adapted_server/`), comprehensive tests, and ensuring A2A-compatibility where feasible.
+    *   The 'Original Source' and 'Licensing' information in the server's documentation within MCP-Launchpad are accurately filled.
 
 ### Server Criteria
 - **Relevance to AI Agents:** The server should provide clear utility for AI agents (e.g., data processing, communication, specialized tools).
