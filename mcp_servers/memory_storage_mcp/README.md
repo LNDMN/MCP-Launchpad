@@ -106,6 +106,67 @@ docker run -d \
   memory-storage-mcp:latest
 ```
 
+## 🧪 Running Tests
+
+Memory Storage MCP comes with a comprehensive test suite that can be run both locally and in Docker containers.
+
+### Local Testing
+
+To run tests locally:
+
+```bash
+# Run all tests with default options
+python run_tests.py
+
+# Or use the shell script
+./scripts/run_tests.sh
+
+# Skip type checking
+python run_tests.py --skip-mypy
+
+# Run tests in parallel
+python run_tests.py --parallel
+
+# Stop on first failure
+python run_tests.py --fail-fast
+
+# View coverage report in browser
+python run_tests.py --view-coverage
+```
+
+### Docker Testing
+
+To run tests in a Docker container:
+
+```bash
+# Using the Python script
+python run_tests.py --docker
+
+# Or use the shell script
+./scripts/docker_tests.sh
+
+# Pass additional options
+./scripts/docker_tests.sh --skip-mypy --parallel
+```
+
+### CI Testing
+
+For CI/CD environments:
+
+```bash
+# Run with default CI settings
+python ci_tests.py
+
+# Set minimum coverage requirement
+python ci_tests.py --min-coverage 90
+
+# Disable JUnit XML report
+python ci_tests.py --no-junit
+
+# Disable coverage XML report
+python ci_tests.py --no-coverage-xml
+```
+
 ## 🛡️ Security Considerations
 
 By default, authentication is disabled for easier development and local use. For production environments, enable authentication:

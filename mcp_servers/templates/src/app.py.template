@@ -1,0 +1,180 @@
+#!/usr/bin/env python3
+"""
+MCP Server Application
+
+This module contains the FastAPI application for the MCP server.
+It handles configuration loading, API endpoint setup, and server execution.
+"""
+
+import json
+import logging
+import os
+from typing import Any, Dict, List, Optional, Union
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+
+# Import your modules here
+# from .models import ...
+# from .utils import ...
+
+
+# Configure logging
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO"),
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+
+# Load configuration
+def load_config() -> Dict[str, Any]:
+    """Load configuration from file or environment variables."""
+    config_path = os.getenv("CONFIG_PATH", "config/default.json")
+    try:
+        if os.path.exists(config_path):
+            with open(config_path, "r") as f:
+                return json.load(f)
+        else:
+            logger.warning(f"Config file {config_path} not found, using default values")
+            return {
+                "server": {
+                    "host": os.getenv("HOST", "0.0.0.0"),
+                    "port": int(os.getenv("PORT", "8000")),
+                    "debug": os.getenv("DEBUG", "false").lower() == "true",
+                }
+            }
+    except Exception as e:
+        logger.error(f"Error loading configuration: {e}")
+        return {
+            "server": {
+                "host": "0.0.0.0",
+                "port": 8000,
+                "debug": False,
+            }
+        }
+
+
+config = load_config()
+
+# Create FastAPI app
+app = FastAPI(
+    title="YourServerName MCP Server",
+    description="Description of your MCP server",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+)
+
+# Add CORS middleware
+if config.get("server", {}).get("cors", {}).get("enabled", True):
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=config.get("server", {}).get("cors", {}).get("origins", ["*"]),
+        allow_credentials=True,
+        allow_methods=config.get("server", {}).get("cors", {}).get("methods", ["*"]),
+        allow_headers=config.get("server", {}).get("cors", {}).get("headers", ["*"]),
+    )
+
+
+# Define your data models
+class HealthResponse(BaseModel):
+    """Health check response model."""
+    status: str
+    version: str
+
+
+class A2ARequest(BaseModel):
+    """A2A request model for standardized API."""
+    messages: List[Dict[str, str]]
+    action: Optional[str] = None
+    parameters: Optional[Dict[str, Any]] = None
+
+
+class A2AResponse(BaseModel):
+    """A2A response model for standardized API."""
+    status: str
+    content: Optional[str] = None
+    data: Optional[Any] = None
+    error: Optional[str] = None
+
+
+# Define API endpoints
+@app.get("/", response_model=HealthResponse)
+async def health_check() -> HealthResponse:
+    """Health check endpoint."""
+    return HealthResponse(status="YourServerName MCP is running", version="1.0.0")
+
+
+@app.post("/a2a", response_model=A2AResponse)
+async def a2a_endpoint(request: A2ARequest) -> A2AResponse:
+    """A2A compatible endpoint for standardized AI agent interaction."""
+    try:
+        # Process the request based on action and parameters
+        if request.action:
+            # Handle specific actions
+            if request.action == "example_action":
+                # Process parameters and return result
+                return A2AResponse(
+                    status="success",
+                    content="Action completed successfully",
+                    data={"result": "example data"},
+                )
+            else:
+                return A2AResponse(
+                    status="error",
+                    error=f"Unknown action: {request.action}",
+                )
+        else:
+            # Process based on messages
+            # This is where you would implement your custom logic
+            return A2AResponse(
+                status="success",
+                content="Processed message successfully",
+                data={"result": "example data"},
+            )
+    except Exception as e:
+        logger.error(f"Error processing A2A request: {e}")
+        return A2AResponse(
+            status="error",
+            error=str(e),
+        )
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
+    """Handle HTTP exceptions."""
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"status": "error", "error": exc.detail},
+    )
+
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+    """Handle general exceptions."""
+    logger.error(f"Unhandled exception: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={"status": "error", "error": "Internal server error"},
+    )
+
+
+# Add your custom endpoints here
+# @app.get("/your-endpoint")
+# async def your_endpoint():
+#     ...
+
+
+# Run the application
+if __name__ == "__main__":
+    uvicorn.run(
+        "app:app",
+        host=config.get("server", {}).get("host", "0.0.0.0"),
+        port=config.get("server", {}).get("port", 8000),
+        reload=config.get("server", {}).get("debug", False),
+        workers=config.get("server", {}).get("workers", 1),
+    ) 

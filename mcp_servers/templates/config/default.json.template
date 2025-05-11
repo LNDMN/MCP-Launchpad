@@ -1,0 +1,57 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "debug": false,
+    "workers": 4,
+    "timeout": 60,
+    "cors": {
+      "enabled": true,
+      "origins": ["*"],
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "headers": ["Content-Type", "Authorization"]
+    },
+    "rate_limit": {
+      "enabled": true,
+      "limit": 100,
+      "timespan": 60
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file": null
+  },
+  "data": {
+    "path": "/app/data",
+    "backup": {
+      "enabled": true,
+      "interval": 86400,
+      "keep": 5
+    }
+  },
+  "security": {
+    "api_keys": {
+      "enabled": false,
+      "keys": []
+    },
+    "jwt": {
+      "enabled": false,
+      "secret": "",
+      "algorithm": "HS256",
+      "expiry": 3600
+    }
+  },
+  "features": {
+    "a2a_compatibility": true,
+    "health_check": true,
+    "metrics": false,
+    "swagger": true
+  },
+  "integrations": {
+    // Add your specific integrations here
+  },
+  "custom": {
+    // Add your custom server-specific settings here
+  }
+} 

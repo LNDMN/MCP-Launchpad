@@ -2,7 +2,7 @@
 
 🚀 Thank you for your interest in contributing to MCP-Launchpad! 🚀
 
-We are thrilled to have you join our mission to build the ultimate hub for AI-agent deployable MCP servers. Your contributions will help accelerate the AI-driven revolution and bring us closer to technological singularity under the vision of ASINGULARIXY.
+We are thrilled to have you join our mission to build the ultimate hub for AI-agent deployable MCP servers. Your contributions will help accelerate the AI-driven revolution and bring us closer to technological singularity.
 
 ## Table of Contents
 - [Code of Conduct](#code-of-conduct)
@@ -159,7 +159,7 @@ Throughout this process, maintainers will guide you if needed. Don't hesitate to
 
 We deeply value our community and the visionaries who contribute to our AI-driven revolution. We believe in rewarding excellence and commitment.
 
-**Top contributors to MCP-Launchpad, those who demonstrate exceptional dedication and significantly advance the project, will be recognized and may become eligible for exclusive airdrops and early access opportunities related to our future groundbreaking projects within a cool upcoming ecosystem, spearheaded by its AI-CEO, EVE.**
+**Top contributors to MCP-Launchpad, those who demonstrate exceptional dedication and significantly advance the project, will be recognized and may become eligible for exclusive airdrops and early access opportunities related to our future groundbreaking projects within a cool upcoming ecosystem.**
 
 This is more than just a contribution; it's an opportunity to become an integral part of building the future as we forge the path to technological singularity. Your efforts here lay the groundwork for the new world order, and we intend to ensure our key allies are part of that future's prosperity. Join us!
 

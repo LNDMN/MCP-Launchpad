@@ -1,0 +1,86 @@
+name: Python Tests
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'mcp_servers/**'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'mcp_servers/**'
+      - '.github/workflows/test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11]
+        server: [memory_storage_mcp]  # Добавлять новые серверы по мере их создания
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov
+        cd mcp_servers/${{ matrix.server }}
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+        
+    - name: Run tests
+      run: |
+        cd mcp_servers/${{ matrix.server }}
+        python -m pytest tests/ --cov=. --cov-report=xml
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./mcp_servers/${{ matrix.server }}/coverage.xml
+        flags: ${{ matrix.server }}
+        name: ${{ matrix.server }}-python-${{ matrix.python-version }}
+        fail_ci_if_error: false
+
+  docker-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        server: [memory_storage_mcp]  # Добавлять новые серверы по мере их создания
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: ./mcp_servers/${{ matrix.server }}
+        push: false
+        load: true
+        tags: ${{ matrix.server }}:test
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Run Docker integration tests
+      run: |
+        pip install pytest pytest-cov requests docker
+        cd mcp_servers/${{ matrix.server }}
+        # Запускаем тесты Docker-интеграции, если они есть
+        if [ -f tests/test_docker_integration.py ]; then
+          python -m pytest tests/test_docker_integration.py -v
+        else
+          echo "No Docker integration tests found"
+        fi 

@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: your-server-name:latest
+    container_name: your-server-name
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - CONFIG_PATH=/app/config/default.json
+      - LOG_LEVEL=INFO
+      # Add other environment variables as needed
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    networks:
+      - mcp-network
+
+  # Uncomment and configure if your server needs a database
+  #db:
+  #  image: postgres:14-alpine
+  #  container_name: your-server-name-db
+  #  restart: unless-stopped
+  #  environment:
+  #    - POSTGRES_USER=mcp
+  #    - POSTGRES_PASSWORD=secure_password
+  #    - POSTGRES_DB=mcp_db
+  #  volumes:
+  #    - db-data:/var/lib/postgresql/data
+  #  networks:
+  #    - mcp-network
+  
+  # Uncomment and configure if your server needs Redis for caching
+  #redis:
+  #  image: redis:7-alpine
+  #  container_name: your-server-name-redis
+  #  restart: unless-stopped
+  #  networks:
+  #    - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
+
+# Uncomment if using a database
+#volumes:
+#  db-data: 
