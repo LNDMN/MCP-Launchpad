@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+requests # Likely needed for interacting with GitHub API
+PyGithub # Official GitHub library, or similar
+python-dotenv # For loading env vars including token if needed
+
+# Add specific dependencies from the original github-mcp-server if available 

@@ -1,0 +1,4 @@
+fastapi
+uvicorn[standard]
+
+# Add other dependencies like security libraries if needed 

@@ -1,0 +1,116 @@
+[project]
+name = "mcp-text-editor-launchpad-adapter"
+dynamic = ["version"]
+description = "MCP Text Editor Server - Adapted for MCP-Launchpad"
+authors = [
+    { name = "tumf", email = " НЕ УКАЗАНО В ОРИГИНАЛЕ" },
+    { name = "ASINGULARIXY MCP-Launchpad Adapters", email = "eve@asingularixy.com" }
+]
+dependencies = [
+    "asyncio>=3.4.3",
+    "mcp>=1.1.2",
+    "chardet>=5.2.0",
+]
+requires-python = ">=3.13"
+readme = "README.md"
+license = { text = "MIT" }
+
+[project.scripts]
+# Скрипт для запуска будет определяться Dockerfile ENTRYPOINT
+# mcp-text-editor-launchpad = "mcp_text_editor_launchpad_adapter:run_server_main"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3.4", # Версии из оригинала или новее
+    "pytest-asyncio>=0.24.0",
+    "pytest-env>=1.1.0",
+    "pytest-cov>=6.0.0", # Версии из оригинала, возможно нужно будет поднять для совместимости
+    "pytest-mock>=3.12.0",
+]
+dev = [
+    "ruff>=0.0.262", # Оригинальная версия, можно обновить
+    "black>=23.3.0", # Оригинальная версия, можно обновить
+    "isort>=5.12.0", # Оригинальная версия, можно обновить
+    "mypy>=1.2.0", # Оригинальная версия, можно обновить
+    "pre-commit>=3.2.2", # Оригинальная версия, можно обновить
+    "uv>=0.1.18", # Добавим uv для сборки
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/mcp_text_editor_launchpad_adapter/__init__.py" # Предполагаемый путь к версии
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+testpaths = "tests"
+pythonpath = ["src"]
+
+[tool.ruff]
+lint.select = [
+    "E",  # pycodestyle errors
+    "F",  # pyflakes
+    "W",  # pycodestyle warnings
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+lint.ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+lint.extend-select = ["I"]
+line-length = 88
+src = ["src", "tests"]
+
+[tool.black]
+line-length = 88
+target-version = ['py313']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+namespace_packages = true
+explicit_package_bases = true
+mypy_path = "src"
+
+# Настройки покрытия из оригинального файла, если применимы
+[tool.coverage.run]
+source = ["mcp_text_editor_launchpad_adapter"] # Указываем наш модуль
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+    "__version__",
+    "if TYPE_CHECKING:",
+    "raise FileNotFoundError",
+    "raise ValueError",
+    "raise RuntimeError",
+    "raise OSError",
+    "except Exception as e:",
+    "except ValueError:",
+    "except FileNotFoundError:",
+    "except OSError as e:",
+    "except Exception:",
+    "if not os.path.exists",
+    "if os.path.exists",
+    "def __init__",
+]
+
+omit = [
+    "src/mcp_text_editor_launchpad_adapter/__init__.py", # Версия будет здесь
+    "src/mcp_text_editor_launchpad_adapter/version.py", # Или здесь, если вынесем
+] 

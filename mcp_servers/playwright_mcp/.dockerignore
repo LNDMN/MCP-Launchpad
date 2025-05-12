@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.yml
+
+# Playwright cache/data
+.cache/
+# Add any other data directories that shouldn't be included in the image 
